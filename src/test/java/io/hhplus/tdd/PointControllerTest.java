@@ -11,17 +11,20 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(PointController.class)
 public class PointControllerTest {
@@ -37,7 +40,7 @@ public class PointControllerTest {
 
     // point/{id} Test
     @Test
-    @DisplayName("유저 포인트를 잘 반환하는가")
+    @DisplayName("userPoint를 잘 반환하는가")
     void show_userPoint_data() throws Exception {
 
         //given
@@ -76,14 +79,32 @@ public class PointControllerTest {
 
         //then
         ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders
-                .get("/point/{id}/histories",userId))
+                        .get("/point/{id}/histories", userId))
                 .andExpect(jsonPath("$").isArray())
                 .andExpect(status().isOk());
 
         MvcResult mvcResult = resultActions.andReturn();
         System.out.println(mvcResult.getResponse().getContentAsString());
-
-
     }
 
+    //point/{id}/charge Test
+    @Test
+    @DisplayName("포인트 충전")
+    void chargeTest() throws Exception {
+        //given
+        long userId = 1L;
+        UserPoint userPoint = new UserPoint(userId, 1000, System.currentTimeMillis());
+
+        //when
+        when(pointService.charge(anyLong(), anyLong())).thenReturn(userPoint);
+
+        //then
+        mockMvc.perform(
+                patch("/point/{id}/charge",userId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(userPoint.point())))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(userPoint.id()))
+                .andExpect(jsonPath("$.point").value(userPoint.point()));
+    }
 }
