@@ -107,4 +107,26 @@ public class PointControllerTest {
                 .andExpect(jsonPath("$.id").value(userPoint.id()))
                 .andExpect(jsonPath("$.point").value(userPoint.point()));
     }
+
+    // point/{id}/use
+    @Test
+    @DisplayName("포인트 사용")
+    void useTest() throws Exception{
+        //given
+        long userId = 1L, amount = 1000;
+        UserPoint userPoint = new UserPoint(userId, 1000, System.currentTimeMillis());
+
+        //when
+        when(pointService.use(anyLong(),anyLong())).thenReturn(userPoint);
+
+        //then
+        mockMvc.perform(
+                patch("/point/{id}/use", userId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(amount)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(userPoint.id()))
+                .andExpect(jsonPath("$.point").value(userPoint.point()));
+
+    }
 }

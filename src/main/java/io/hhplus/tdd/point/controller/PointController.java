@@ -50,10 +50,7 @@ public class PointController {
      *  포인틋 사용 기능 시작합니다!
      */
     @PatchMapping("{id}/use")
-    public UserPoint use(
-            @PathVariable long id,
-            @RequestBody long amount
-    ) {
-        return new UserPoint(0, 0, 0);
+    public UserPoint use(@PathVariable long id, @RequestBody long amount) {
+        return pointService.use(id,amount);
     }
 }

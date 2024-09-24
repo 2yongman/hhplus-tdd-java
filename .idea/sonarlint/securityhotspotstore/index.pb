@@ -1,17 +1,11 @@
 
-q
-Asrc/main/java/io/hhplus/tdd/point/repository/TransactionType.java,e\6\e6f02ab90fbe9ff80e1bb184399bc7a43139719f
-n
->src/main/java/io/hhplus/tdd/point/repository/PointHistory.java,8\3\830abf6647ab64ed3cbf6e3cee6ebf40b1289e45
 d
 4src/main/java/io/hhplus/tdd/ApiControllerAdvice.java,8\8\88cc1590e7f1b04538c03df87ef3689b379959ba
-Å
-Q.idea/sonarlint/securityhotspotstore/1/2/12e8a3758cf0265b3393d28af19ae8bf96f46bb8,a\8\a89103cafeeff2f24a8f8ea58d8b4e96cdb15341
-Å
-Q.idea/sonarlint/securityhotspotstore/e/6/e6f02ab90fbe9ff80e1bb184399bc7a43139719f,a\8\a841bc968b054c8b55f95793af9e7748fea306f8
 S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
-w
-G.idea/sonarlint/issuestore/e/6/e6f02ab90fbe9ff80e1bb184399bc7a43139719f,8\f\8f1765581c6b473dd7ded17b7f0252ce7a5bc965
 ]
 -.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
+_
+/src/main/java/io/hhplus/tdd/TddApplication.java,a\6\a6812a9482d636911dacbefa4d0c2e31b2e28bfa
+^
+.src/main/java/io/hhplus/tdd/ErrorResponse.java,f\5\f52c955d454d8ff8a14c405b8bea05dd3bf7b939
