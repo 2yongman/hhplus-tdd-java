@@ -222,10 +222,10 @@ public class PointServiceTest {
         long chargeAmount = 900005;
         when(userPointTable.selectById(userId)).thenReturn(userPoint);
 
-        IllegalArgumentException illegalArgumentException = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        IllegalStateException illegalStateException = Assertions.assertThrows(IllegalStateException.class, () -> {
             pointService.charge(userId,chargeAmount);
         });
 
-        assertThat(illegalArgumentException.getMessage()).isEqualTo("최대 잔고를 초과할 수 없습니다.");
+        assertThat(illegalStateException.getMessage()).isEqualTo("최대 잔고를 초과할 수 없습니다.");
     }
 }

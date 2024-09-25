@@ -34,7 +34,7 @@ public class PointService {
 
     // 포인트 충전
     public UserPoint charge(long userId, long amount){
-        long maxAmount = 1000000; // 최대 잔고
+        final long maxAmount = 1000000; // 최대 잔고
         //검증사항 - amount가 0이거나 음수이면 안된다.
         if (amount <= 0) throw new IllegalArgumentException("충전 금액은 최소 1원 이상이어야 합니다.");
 
@@ -42,7 +42,7 @@ public class PointService {
         UserPoint userPoint = userPointTable.selectById(userId);
 
         // 유저가 존재하면 유저의 포인트에 amount를 더하고
-        if (userPoint.point() + amount > maxAmount) throw new IllegalArgumentException("최대 잔고를 초과할 수 없습니다.");
+        if (userPoint.point() + amount > maxAmount) throw new IllegalStateException("최대 잔고를 초과할 수 없습니다.");
         long updateAmount = userPoint.point() + amount;
 
         // 검증사항 - 새로운 userPoint 를 UserPointTable에 insert 해준다.
