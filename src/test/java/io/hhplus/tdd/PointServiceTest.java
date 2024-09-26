@@ -42,7 +42,7 @@ public class PointServiceTest {
         long userId = 1L;
         long point = 10000L;
         UserPoint userPoint = new UserPoint(userId, point, System.currentTimeMillis());
-
+git p
         //when
         when(userPointTable.selectById(userId)).thenReturn(userPoint);
 
@@ -102,7 +102,7 @@ public class PointServiceTest {
 
         //유연하지 않은 테스트 방식
         //when
-        //when(userPointTable.insertOrUpdate(userPoint.id(),userPoint.point() + chargeMoney)).thenReturn(chargeUserPoint);
+        //(userPointTable.insertOrUpdate(userPoint.id(),userPoint.point() + chargeMoney)).thenReturn(chargeUserPoint);
 
         //UserPoint result = pointService.charge(userId,chargeMoney);
 
