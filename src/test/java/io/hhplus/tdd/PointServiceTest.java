@@ -42,7 +42,7 @@ public class PointServiceTest {
         long userId = 1L;
         long point = 10000L;
         UserPoint userPoint = new UserPoint(userId, point, System.currentTimeMillis());
-git p
+
         //when
         when(userPointTable.selectById(userId)).thenReturn(userPoint);
 
